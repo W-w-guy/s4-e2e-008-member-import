@@ -1,0 +1,50 @@
+=== 平台: Ubuntu 24.04.5 LTS | Python 3.12.3 | kernel 7.0.0-38-generic ===
+
+=== 0) 依赖可用性 ===
+openpyxl 3.1.5
+pytest 7.4.4
+
+=== 1) sha256sum -c（40 条，xlsx 不在内） ===
+rc=0
+OK: 40  FAIL: 0
+
+=== 2) gen ===
+rc=0
+WROTE docs/members.md 42527 bytes
+examples=100 categories=7
+
+=== 3) verify ===
+rc=0
+PASS: 32  FAIL: 0
+SUMMARY 32/32 PASS
+[PASS] V04 AC1 8 行错误报告的行号逐条等于硬编码清单 [12, 20, 24, 38, 46, 59, 75, 84] 实测 [12, 20, 24, 38, 46, 59, 75, 84]
+[PASS] V13 AC2 系统报告与独立脚本之差恰为 0 diff=0.0（容差 0，不允许近似）
+[PASS] V18 AC3 轮询次数恰为 60 次（硬编码上限，不多不少） 实测 60 次（期望 60）
+[PASS] V24 AC4 10 家逐字段全部一致（0 处差异） 有差异的行：[]
+
+=== 4) pytest ===
+rc=0
+101 passed in 0.15s
+
+=== 5) 独立完整度脚本（直接跑 CLI） ===
+{
+ "ratio": 0.989130434783,
+ "filled": 546,
+ "total": 552,
+ "records": 92,
+ "bad": [
+  {
+   "row": 12,
+
+=== 6) xlsx 单元格值转储是否幂等（重跑 gen 后比对） ===
+d8291bb9f4b66310e0540e8015afd426  data/cells_companies.csv
+9bb92fbca73e4c35540591de0ce12ce5  data/cells_contacts.csv
+d8291bb9f4b66310e0540e8015afd426  data/cells_companies.csv
+9bb92fbca73e4c35540591de0ce12ce5  data/cells_contacts.csv
+
+=== 7) pii ===
+scanned=40 hits=0
+rc=0
+
+=== 8) 可校验文件数 ===
+43
